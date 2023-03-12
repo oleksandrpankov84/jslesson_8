@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ДЗ 8</title>
+</head>
+<body>
+	<header>
+		<a href="../index.html">На головну</a>
+		<h1>Задача 8</h1>
+	</header>
+	<main>
+		<p>Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів  (поки він не відмовиться). Знаходити сумарний виграш.</p>
+		<!-- Розвʼязок -->
+		<script>
+			const minValue=-500
+			const maxValue=500
+			const arrayLotteryLength=parseInt(prompt('Введіть кількість елементів для лотереї','10'))
+			function getRandomValue(minValue, maxValue) {
+			return minValue+Math.floor(Math.random()*(maxValue-minValue+1))
+			}
+			function getArrayLottery(arrayLotteryLength,minValue,maxValue) {
+				let winArray=[]
+				for (let i = 0; i < arrayLotteryLength; i++) {
+					let randomValue=getRandomValue(minValue, maxValue)
+					winArray.push(randomValue)
+				}
+				return winArray
+			}
+			const winArray=getArrayLottery(arrayLotteryLength,minValue,maxValue)
+			function getTotalWin(winArray) {
+				let totalWin=0
+				let userConfirm
+				do {
+					let userNumber=parseInt(prompt(`Введить номер елементу від 1 до ${arrayLotteryLength}`))
+					totalWin+=winArray[userNumber-1]
+					userConfirm=window.confirm(`Ви виграли ${totalWin}. Бажаєте продовжжувати?`)
+				} while (userConfirm)
+				return totalWin
+			}
+			totalWin=getTotalWin(winArray)
+			document.write(`<p>Ваш виграш становить ${totalWin}</p>`)
+		</script>
+	</main>
+</body>
+</html>

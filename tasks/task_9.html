@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ДЗ 8</title>
+</head>
+<body>
+	<header>
+		<a href="../index.html">На головну</a>
+		<h1>Задача 9</h1>
+	</header>
+	<main>
+		<p>Морський бій. Користувач вводить кількість клітинок одновимірного масиву та кількість одиночних кораблів. Комп’ютер довільно розміщує ці одиночні кораблі у масиві по один у клітинці (якщо у клітинці 0, то клітинка пуста, якщо 1 – то це означає, що там є корабель. Користувач вводить номер клітинки, куди стріляє. Гра продовжується до тих пір, поки не будуть потоплені усі кораблі.</p>
+		<h2>Розвʼязок:</h2>
+		<script>
+			const userSells=parseInt(prompt('Введіть кількість клітинок на яких будуть росташовані кораблі','10'))
+			const userQtyShips=parseInt(prompt('Введіть кількість кораблів, не більше кількості клітинок','5'))
+			function getRandomValue(minValue, maxValue) {
+			return minValue+Math.floor(Math.random()*(maxValue-minValue+1))
+			}
+		function getGameSells(userSells,userQtyShips) {
+			let gameSells=new Array(userSells).fill(0)
+			for (let i = 0; i < userQtyShips; i++) {
+				let shipCell=getShipsInSells(gameSells)
+				gameSells[shipCell]=1
+			}
+			return gameSells
+		} 
+		function getShipsInSells(gameSells){
+			let shipCellNum
+			let maxIndex=gameSells.length-1
+			do {
+				shipCellNum=getRandomValue(0,maxIndex)
+			} while (gameSells[shipCellNum]===1);
+		return shipCellNum
+		}
+		const gameSells=getGameSells(userSells,userQtyShips)
+		// console.log(gameSells)
+		function game(gameSells,userQtyShips) {
+			do {
+				let userFire=parseInt(prompt(`Введіть номер клітинки в яку стреляємо, від 1 до ${gameSells.length}`))-1
+				if (gameSells[userFire]===1) {
+					userQtyShips--
+					alert(`Пряме попадання, залишилось ${userQtyShips} кораблів`)
+					gameSells[userFire]=0
+				} else {
+					alert('Промахнулись')
+				}
+			} while (userQtyShips>0);
+		}
+		game(gameSells,userQtyShips)
+		</script>
+	</main>
+</body>
+</html>

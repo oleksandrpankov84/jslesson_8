@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ДЗ 8</title>
+</head>
+<body>
+	<header>
+		<a href="../index.html">На головну</a>
+		<h1>Задача 1</h1>
+	</header>
+	<main>
+		<p>Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він відноситься (відмінник, двієчник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча би одна трійка)).</p>
+		<h2>Розвʼязок:</h2>
+		<script>
+			// масив з оцінками студенту
+			let ratings=[]
+			const qtyRatings=parseInt(prompt('Введить кількість оцінок:','2'))
+			// функція рандомної оцінки
+			function getRandomRating() {
+				return Math.floor(Math.random()*(12-1+1)+1)
+			}
+			// заведення оцінок в масив
+			for (let i = 0; i < qtyRatings; i++) {
+				ratings[i]=getRandomRating()
+			}
+			// функція отримання середньої оцінки
+			function getAverageRatings(ratings) {
+				let scoreSum=0
+				for (let r = 0; r < ratings.length; r++) {
+					scoreSum+=ratings[r]
+				}
+				return scoreSum/ratings.length
+			}
+			//функція перевірки статуса студента (відмінник, хорошист, тройочник, двієчник)
+			function getStudentStatus(ratings) {
+				let minRating=ratings[0]
+				for (let s = 1; s < ratings.length; s++) {
+					if (minRating>ratings[s]) minRating = ratings[s]
+				}
+				if (minRating>0&&minRating<4) return 'Двієчник'
+				if (minRating>3&&minRating<7) return 'Трієчник'
+				if (minRating>6&&minRating<10) return 'Хорошист'
+				if (minRating>9&&minRating<=12) return 'Відмінник'
+			}
+			// вивід результату
+			document.write(`
+			<p>Кількість предметів: ${qtyRatings}</p>
+			<p>Оцінки студента: ${ratings}</p>
+			<p>Сердня оцінка: ${getAverageRatings(ratings).toFixed(2)}</p>
+			<p>Статус студента: ${getStudentStatus(ratings)}</p>
+			`)
+		</script>
+	</main>
+</body>
+</html>

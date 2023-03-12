@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ДЗ 8</title>
+</head>
+<body>
+	<header>
+		<a href="../index.html">На головну</a>
+		<h1>Задача 6</h1>
+	</header>
+	<main>
+		<p>Задача 6. Дано послідовність цін товарів та назв (у окремих масивах). Вивести на екран ті, які може собі дозволити користувач (кількість грошей задається).</p>
+		<p>Приклад збереження даних:</p>
+		<p>let productsPrices = [1000, 20, 31]</p>
+		<p>let productsTitles = [‘cheese’, ‘juice’, ‘bread’]</p>
+		<h2>Розвʼязок:</h2>
+		<script>
+			const productPriceList=[20,25,10,150,180,100]
+			const productNameList=['Сік','Хліб','Яблука','Вино','Мʼясо','Горілка']
+			const userMoney=parseFloat(prompt('Введить кількість наявних грошей для покупки','100'))
+			function getPurchasePossibility(userMoney,productPriceList,productNameList) {
+				let priceList=[], nameList=[]
+				for (let i = 0; i < productPriceList.length; i++) {
+					if (userMoney>productPriceList[i]) {
+						priceList.push(productPriceList[i])
+						nameList.push(productNameList[i])
+					}
+				}
+				return [priceList,nameList]
+			}
+			let productsPrices,productsTitles
+			[productsPrices,productsTitles]=getPurchasePossibility(userMoney,productPriceList,productNameList)
+			document.write('<p>Ви можете придбати у нас наступні товари:</p>')
+			for (let i = 0; i < productsPrices.length; i++) {
+				document.write(`<p>${productsTitles[i]} за ціною ${productsPrices[i]} грн.</p>`)
+			}
+		</script>
+	</main>
+</body>
+</html>

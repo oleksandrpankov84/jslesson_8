@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ДЗ 8</title>
+</head>
+<body>
+	<header>
+		<a href="../index.html">На головну</a>
+		<h1>Задача 7</h1>
+	</header>
+	<main>
+		<p>Задача 7. Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:</p>
+		<ul>
+			<li>за весь рік;</li>
+			<li>у першій половині року;</li>
+			<li>у другій половині року;</li>
+			<li>за літо;</li>
+			<li>за ІІ квартал;</li>
+			<li>за парні місяці (з парними номерами);</li>
+			<li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима).</li>
+		</ul>
+		<h2>Розвʼязок:</h2>
+		<script>
+			const paymentList=[123,400,500,240,340,360,680,900,1200,500,1000,890]
+			function getSumPayments(paymentList,startMonth,endMonth) {
+				let paymentSum=0
+				for (let i = startMonth-1; i < endMonth; i++){
+				paymentSum+=paymentList[i]
+				}
+				return paymentSum
+			}
+			function getSumEvenMonth(paymentList) {
+				let sum=0
+				for (let i = 0; i < paymentList.length; i++) {
+					if ((i+1)%2===0) sum+=paymentList[i]
+				}
+				return sum
+			}
+			function getSumSeasonStartMonth(paymentList) {
+				let sum=0
+				for (let i = 0; i < paymentList.length; i++) {
+					if ((i+1)%3===0) sum+=paymentList[i]
+				}
+				return sum
+			}
+			document.write(`
+			<p>Платіжки на протязі року: ${paymentList}</p>
+			<p>Сума платежів за весь рік = ${getSumPayments(paymentList,1,12)}</p>
+			<p>Сума платежів у першій половині року = ${getSumPayments(paymentList,1,6)}</p>
+			<p>Сума платежів у другий половині року = ${getSumPayments(paymentList,6,12)}</p>
+			<p>Сума платежів за літо = ${getSumPayments(paymentList,6,8)}</p>
+			<p>Сума платежів за ІІ квартал року = ${getSumPayments(paymentList,4,6)}</p>
+			<p>Сума платежів за парні місяці = ${getSumEvenMonth(paymentList)}</p>
+			<p>Сума платежів за місяці які є початковими у сезоні = ${getSumSeasonStartMonth(paymentList)}</p>
+			`)
+		</script>
+	</main>
+</body>
+</html>

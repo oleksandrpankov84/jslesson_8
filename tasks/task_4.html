@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ДЗ 8</title>
+</head>
+<body>
+	<header>
+		<a href="../index.html">На головну</a>
+		<h1>Задача 4</h1>
+	</header>
+	<main>
+		<p>Задача 4. Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :
+		</p>
+		<ul>
+			<li>починаються на букву «А»;</li>
+			<li>перша і остання літери співпадають;</li>
+			<li>складаються з більше ніш 5 символів;</li>
+		</ul>
+		<h2>Розвʼязок:</h2>
+		<script>
+			let carNumbers=['АА2590СХ','КА4567СВ','АМ5570МА','АА9843КА','АА4563НВ','СА4589АС','ХА2345ЕВ']
+			function getQtyNumbersStartA(carNumbers) {
+				let caunterA=0
+				for (let i = 0; i < carNumbers.length; i++) {
+					if (carNumbers[i][0]==='А') {
+						caunterA++
+					}
+				}
+				return caunterA
+			}
+			function getSameLetters(carNumbers) {
+				let caunter=0
+				for (let l = 0; l < carNumbers.length; l++) {
+					if (carNumbers[l][0]===carNumbers[l][carNumbers[l].length-1]) {
+						caunter++
+					}
+				}
+				return caunter
+			}
+			function getQtyMoreThan5Symbols(carNumbers) {
+				let caunter=0
+				for (let i = 0; i < carNumbers.length; i++) {
+					if (carNumbers[i].length>5) {
+						caunter++
+					}
+				}
+				return caunter
+			}
+			document.write(`
+			<p>Номари машин: ${carNumbers}</p>
+			<p>Кількіть номерів починаються на буква "А": ${getQtyNumbersStartA(carNumbers)}</p>
+			<p>Кількість номерів в яких співпадають перша і остання літери: ${getSameLetters(carNumbers)}</p>
+			<p>Кількість номерів які складаються більше ніж 5 символів: ${getQtyMoreThan5Symbols(carNumbers)}</p>
+			`)
+		</script>
+	</main>
+</body>
+</html>
